@@ -18,8 +18,8 @@
 /out/
 
 # production
-/build
-
+/build	
+chore(init): code base for product
 # misc
 .DS_Store
 *.pem
