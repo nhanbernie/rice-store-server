@@ -1,15 +1,12 @@
-import express from "express";
-import cors from "cors";
+import express, { Request, Response } from 'express'
+import authRoute from './routes/auth.router'
+const app = express()
 
-const app = express();
-app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.get("/", (req, res) => {
-  res.send("Server is running at port: 3001");
-});
-app.listen(3001, () => {
-  console.log("Server is running on port 3000");
-});
+app.use(express.json())
 
-// export default app;
+app.get('/rice-store', (req: Request, res: Response) => {
+  res.send('Wellcome to my Rice Store!')
+})
+
+app.use('/api/auth', authRoute)
+export default app
