@@ -1,4 +1,4 @@
-import User from '../models/entities/userEntity'
+import User from '../models/entities/user.entity'
 import bcrypt from 'bcrypt'
 
 interface CreateUserInput {
