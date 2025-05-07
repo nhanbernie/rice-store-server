@@ -1,8 +1,8 @@
-import express from 'express'
-import { Request, Response } from 'express'
+import { Router } from 'express'
 import { login, register } from '../modules/auth/authController'
 import { checkExistingUser } from '../middleware/check-existing-user.middleware'
-const route = express.Router()
+
+const route = Router()
 
 route.post('/login', login)
 
