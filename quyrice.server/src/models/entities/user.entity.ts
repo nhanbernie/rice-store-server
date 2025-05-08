@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { IUser } from 'models/types/common.type'
+import { UserRole } from '../../enums/common.enum'
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -15,6 +16,11 @@ const userSchema = new mongoose.Schema<IUser>(
     password: {
       type: String,
       required: true
+    },
+    role: {
+      type: String,
+      enum: [UserRole.USER, UserRole.ADMIN],
+      default: UserRole.USER
     },
     tokens: [
       {

@@ -29,14 +29,15 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
       return
     }
     const verrifytionToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET as string, {
-      expiresIn: parseInt(process.env.JWT_EXPIRATION_TIME_HOUR as string, 10) || '1h'
+      expiresIn: parseInt(process.env.JWT_EXPIRATION_TIME_HOUR as string, 10)
     })
 
     return sendResponse(res, 200, true, 'Login successful', {
       user: {
         email: user.email,
-        token: verrifytionToken
-      }
+        role: user.role
+      },
+      token: verrifytionToken
     })
   } catch (error) {
     next(error)
@@ -64,9 +65,9 @@ export const register = async (req: Request, res: Response, next: NextFunction):
     })
     return sendResponse(res, 201, true, 'User registered successfully', {
       user: {
-        email: user.email,
-        token: verrifytionToken
-      }
+        email: user.email
+      },
+      token: verrifytionToken
     })
   } catch (error) {
     next(error)

@@ -2,6 +2,11 @@ export interface IUser {
   name: string
   email: string
   password: string
+  role: {
+    type: string
+    enum: string[]
+    default: string
+  }
   tokens: Array<{
     token: string
     expiresIn: number
