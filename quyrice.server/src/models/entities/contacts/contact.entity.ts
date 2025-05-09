@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-import { ContactItem, IContact } from 'models/types/contact/contact.type'
+import { IContactItem, IContact } from 'models/types/contact/contact.type'
 
-const contactItemSchema = new mongoose.Schema<ContactItem>(
+const contactItemSchema = new mongoose.Schema<IContactItem>(
   {
     type: { type: String, required: true },
     link: { type: String, required: true }
