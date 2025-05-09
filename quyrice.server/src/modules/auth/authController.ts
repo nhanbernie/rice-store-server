@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import { validateUser } from '../../utils/validation/validateUser'
 import { sendResponse } from '../../utils/responses/response-helper'
 import { createUser } from '../../services/createUser'
-import User from '../../models/entities/user.entity'
+import User from '../../models/entities/auth/user.entity'
 
 export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { email, password } = req.body

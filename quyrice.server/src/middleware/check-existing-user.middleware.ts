@@ -1,5 +1,5 @@
 import { sendResponse } from '../utils/responses/response-helper'
-import User from '../models/entities/user.entity'
+import User from '../models/entities/auth/user.entity'
 import { Request, Response, NextFunction } from 'express'
 
 export const checkExistingUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
