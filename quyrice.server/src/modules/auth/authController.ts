@@ -16,7 +16,6 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
 
   try {
     const user = await User.findOne({ email })
-
     if (!user) {
       sendResponse(res, 401, false, 'Invalid email or password')
       return
@@ -28,16 +27,18 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
       sendResponse(res, 401, false, 'Invalid email or password')
       return
     }
-    const verrifytionToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET as string, {
-      expiresIn: parseInt(process.env.JWT_EXPIRATION_TIME_HOUR as string, 10)
+
+    const accessToken = jwt.sign({ idUser: user.id }, process.env.JWT_SECRET as string, {
+      expiresIn: parseInt(process.env.JWT_EXPIRATION as string, 10)
     })
 
     return sendResponse(res, 200, true, 'Login successful', {
       user: {
+        id: user.id,
         email: user.email,
         role: user.role
       },
-      token: verrifytionToken
+      token: accessToken
     })
   } catch (error) {
     next(error)
@@ -60,14 +61,14 @@ export const register = async (req: Request, res: Response, next: NextFunction):
   try {
     const user = await createUser(name, email, password)
 
-    const verrifytionToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET as string, {
-      expiresIn: parseInt(process.env.JWT_EXPIRATION_TIME_HOUR as string, 10) || '1h'
+    const accessToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET as string, {
+      expiresIn: parseInt(process.env.JWT_EXPIRATION as string, 10)
     })
     return sendResponse(res, 201, true, 'User registered successfully', {
       user: {
         email: user.email
       },
-      token: verrifytionToken
+      token: accessToken
     })
   } catch (error) {
     next(error)
