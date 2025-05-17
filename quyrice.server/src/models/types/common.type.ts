@@ -1,11 +1,13 @@
+import { UserRole } from '@enums/common.enum'
+
 export interface IUser {
   name: string
   email: string
   password: string
   role: {
     type: string
-    enum: string[]
-    default: string
+    enum: UserRole
+    default: UserRole.USER
   }
   tokens: Array<{
     token: string
