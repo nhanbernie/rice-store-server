@@ -3,7 +3,7 @@ export interface IContactItem {
   link: string
 }
 export interface IContact {
-  configId: string
+  configId?: string
   contacts: IContactItem[]
   createdAt?: Date
   updatedAt?: Date
