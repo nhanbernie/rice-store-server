@@ -9,7 +9,16 @@
     "baseUrl": "./src",
     "paths": {
       "@config/*": ["config/*"],
-      "@utils/*": ["/src/utils/*"],
+      "@constants/*": ["constants/*"],
+      "@enums/*": ["enums/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@entities/*": ["models/entities/*"],
+      "@types/*": ["models/types/*"],
+      "@modules/*": ["modules/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }
