@@ -13,9 +13,9 @@
       "@enums/*": ["enums/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
+      "@modules/*": ["modules/*"],
       "@entities/*": ["models/entities/*"],
       "@types/*": ["models/types/*"],
-      "@modules/*": ["modules/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"]

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import { IUser } from 'models/types/common.type'
-import { UserRole } from '../../../enums/common.enum'
+import { IUser } from '@models/types/common.type'
+import { UserRole } from '@enums/common.enum'
 
 const userSchema = new mongoose.Schema<IUser>(
   {

@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express'
-import authRoute from './routes/auth.router'
-import mainRouter from './routes/index'
+import mainRouter from './routes/mainRouter'
 const app = express()
 
 app.use(express.json())
