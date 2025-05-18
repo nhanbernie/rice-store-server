@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import { getCustomerService } from '../modules/user/customerServices/customerServicesController';
+import { Router } from 'express'
+import { getCustomerService } from '../modules/user/customerServices/customerServicesController'
 
-const route = Router();
+const route = Router()
 
 route.get('/', getCustomerService)
 
-export default route;
+export default route
