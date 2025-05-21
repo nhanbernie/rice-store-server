@@ -7,8 +7,7 @@ export const getProductList = async (req: Request, res: Response, next: NextFunc
     if (!producList) {
       sendResponse(res, 404, false, 'Product list not found')
     }
-    console.log(producList)
-    sendResponse(res, 200, true, 'Product list retrieved successfully', producList?.products)
+    sendResponse(res, 200, true, 'Product list retrieved successfully', producList)
   } catch (error) {
     next(error)
   }

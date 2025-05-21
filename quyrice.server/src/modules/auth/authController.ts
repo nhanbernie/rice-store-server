@@ -1,30 +1,32 @@
 import bcrypt from 'bcrypt'
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
-import { validateUser } from '../../utils/validation/validateUser'
-import { sendResponse } from '../../utils/responses/response-helper'
-import { createUser } from '../../services/createUser'
-import User from '../../models/entities/auth/user.entity'
+import { validateUser } from '@utils/validation/validateUser'
+import { sendResponse } from '@utils/responses/response-helper'
+import { createUser } from '@services/createUser'
+import User from '@models/entities/auth/user.entity'
+import { ERROR, SUCCESS } from '@constants/messages/commonMessage.constant'
 
 export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const { email, password } = req.body
-
+  const email = req.body.email
+  const password = req.body.password
+  
   if (!email || !password) {
-    sendResponse(res, 400, false, 'Email and password are required')
+    sendResponse(res, 400, false, ERROR.EMF020)
     return
   }
 
   try {
     const user = await User.findOne({ email })
     if (!user) {
-      sendResponse(res, 401, false, 'Invalid email or password')
+      sendResponse(res, 401, false, ERROR.EMF021)
       return
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
 
     if (!isPasswordValid) {
-      sendResponse(res, 401, false, 'Invalid email or password')
+      sendResponse(res, 401, false, ERROR.EMF021)
       return
     }
 
@@ -32,9 +34,8 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
       expiresIn: parseInt(process.env.JWT_EXPIRATION as string, 10)
     })
 
-    return sendResponse(res, 200, true, 'Login successful', {
+    return sendResponse(res, 200, true, SUCCESS.SUF001, {
       user: {
-        id: user.id,
         email: user.email,
         role: user.role
       },
